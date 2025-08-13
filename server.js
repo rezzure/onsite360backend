@@ -1,3 +1,4 @@
+//This is for testing and need to delete
 const {default:mongoose}= require('mongoose');
 require("dotenv").config();
 baseUrl = process.env.BASE_URL;
