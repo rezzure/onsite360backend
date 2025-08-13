@@ -23,58 +23,13 @@ const getPaymentDetail = require ("../../controllers/Admin/getPaymentDetail.js")
 const paymentApproval = require ("../../controllers/Admin/paymentApproval.js");
 const disbursement = require ("../../controllers/Admin/disbursement.js");
 const addFeature = require ("../../controllers/Admin/addFeature.js");
+const addMaterialMaster = require("../../controllers/Admin/materialMaster.js");
+const addVendorManagement = require("../../controllers/Admin/vendorManagement.js");
+const getMaterialMaster = require("../../controllers/Admin/getMaterialMaster.js");
+const updateMaterialMaster = require("../../controllers/Admin/updateMaterialMaster.js");
+const deleteMaterialMaster = require("../../controllers/Admin/deleteMaterialMaster.js");
 
-// admin login
 
-// router.post("/admin/login", async (req, res) => {
-//   const { email, password } = req.body;
-//   if(!email||!password){
-//     res.send({
-//         success:false,
-//         message:"all fields are required"
-//     })
-//   }
-//   try {
-//     const user = await User.findOne({ email: email });
-//     if (!user) {
-//       return res.send({
-//         success: false,
-//         message: "user not found",
-//       });
-//     }
-//     if (user.role === "admin") {
-//       const isMatch = await bcrypt.compare(password, user.password);
-//       if (!isMatch) {
-//         return res.send({
-//           success: false,
-//           message: "wrong password",
-//         });
-//       }
-//       const data = {
-//         id: user._id,
-//       };
-
-//       const token = await jwt.sign(data, secretCode);
-//       console.log(token + ". token");
-//       user.password = "";
-//       return res.send({
-//         success: true,
-//         message: "user logged in successfully",
-//         token: token,
-//         data: user,
-//       });
-//     }
-//     return res.send({
-//         success:false,
-//         message:"user is not an admin"
-//     })
-//   } catch (err) {
-//     return res.status(501).send({
-//       success: false,
-//       message: `error:- ${err.message}`,
-//     });
-//   }
-// });
 
 // admin details
 router.get("/admin/detail",verification,adminDetail)
@@ -108,9 +63,6 @@ router.get("/supervisor/details",verification, getSupervisorDetail);
 router.post("/add/site",verification, addSite);
 
 
-
-
-
 // getting site details
 router.get("/get/sitesdetail",verification,getSiteDetail)
 
@@ -137,8 +89,26 @@ router.post("/payment/approval", verification, paymentApproval);
 router.post("/disbursement", verification, disbursement);
 
 
-
 // additional features
 router.post("/add/feature", verification, addFeature)
+
+// materialmaster router
+
+router.post("/material/master", verification, addMaterialMaster )
+
+// get material master detail
+router.get("/get/material/master", verification, getMaterialMaster)
+
+// Update material master
+router.put("/update/material/master/:_id", verification, updateMaterialMaster)
+
+// delete material master
+router.delete("/delete/material/master/:_id", verification, deleteMaterialMaster)
+
+// vendor management router
+
+router.post("/vendor/management", verification, addVendorManagement)
+
+
 
 module.exports = router;

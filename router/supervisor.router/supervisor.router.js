@@ -1,12 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../../Schema/users.schema/users.model")
-const Supervisor = require("../../Schema/supervisor.schema/supervisor.model");
-const Site = require("../../Schema/site.Schema/site.model");
-const Expense = require("../../Schema/expenses.schema/expense.model");
-const Progress = require("../../Schema/progressReport.schema/progressReport.model")
 const upload = require("../../middleware/multer");
-const multer = require("multer");
 const verification = require("../../middleware/verification");
 const supervisorDetail = require("../../controllers/Supervisor/supervisorDetail");
 const allortedSite = require("../../controllers/Supervisor/allortedSite");
@@ -14,10 +8,14 @@ const getExpenseDetail = require("../../controllers/Supervisor/getExpenseDetail"
 const expenseDetail = require("../../controllers/Supervisor/expenseDetail");
 const progressReport = require("../../controllers/Supervisor/progressReport");
 const getProgressReport = require("../../controllers/Supervisor/getProgressReport");
-
+const addMaterialMaster = require("../../controllers/Supervisor/addMaterialMaster");
+const addVendorManagement = require("../../controllers/Supervisor/addVendor");
+const getMaterialMaster = require("../../controllers/Supervisor/getMaterialMaster");
+const updateMaterialMaster = require("../../controllers/Supervisor/updateMaterialMaster");
+const deleteMaterialMaster = require("../../controllers/Supervisor/deleteMaterialMaster");
+ 
 // get detail
 router.get("/supervisor/detail",verification,supervisorDetail)
-
 
 // router to get allorted site
 router.get("/allortedSite",verification,allortedSite)
@@ -28,11 +26,25 @@ router.post("/expense/detail",verification,upload.single('image'),expenseDetail)
 // router to get expense details
 router.get("/getExpense/details/:_id",verification,getExpenseDetail)
 
-
 // router for progress report
 router.post("/report/progress/:id",verification,upload.array("photos"),progressReport)
 
 // getting progress report details
 router.get("/getProgress/report/:_id",verification,getProgressReport)
+
+// materialmaster router
+router.post("/material/master", verification, addMaterialMaster)
+
+// get material master detail
+router.get("/get/material/master", verification, getMaterialMaster)
+
+// Update material master
+router.put("/update/material/master/:_id", verification, updateMaterialMaster)
+
+// delete material master
+router.delete("/delete/material/master/:_id", verification, deleteMaterialMaster)
+
+// vendor management router
+router.post("/vendor/management", verification, addVendorManagement)
 
 module.exports = router;
