@@ -1,6 +1,17 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
+const image = new mongoose.Schema({
+  fieldname: { type: String, required: true },
+  originalname: { type: String, required: true },
+  mimetype: { type: String, required: true },
+  destination: { type: String, required: true }, // Changed from Number to String
+  filename: { type: String, required: true },
+  path: { type: String, required: true },
+  size: { type: Number, required: true }, // Changed from String to Number
+  uploadedAt: { type: Date, default: Date.now },
+});
+
 const expenseSchema = new Schema({
   siteName:{
     type:String,
@@ -22,7 +33,6 @@ const expenseSchema = new Schema({
   expenseType: {
     type: String,
     required: true,
-    // enum: ['travel', 'materials', 'food', 'lodging', 'equipment', 'other'] 
   },
   amount: {
     type: Number,
@@ -38,14 +48,9 @@ const expenseSchema = new Schema({
     type: String,
     required: true
   },
-  image: {
-    type: String,
-    required: false 
-  },
+  image:image,
   status: {
     type: String,
-    // required: true,
-    // enum: ['pending', 'approved', 'rejected'],
     default: 'pending'
   },
   adminComment: {

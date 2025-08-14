@@ -1,12 +1,15 @@
 const Client = require("../../Schema/client.schema/client.model");
 const Expense = require("../../Schema/expenses.schema/expense.model");
 const Supervisor = require("../../Schema/supervisor.schema/supervisor.model");
+const Admin = require("../../Schema/admin.schema/admine.model")
 
 const updateExpenseStatus = async (req, res) => {
+  const email = req.query.email
   console.log(req.body)
   const { supervisorEmail, status, expenseId } = req.body;
   try {
     const supervisor = await Supervisor.findOne({ email: supervisorEmail });
+    const admin = await Admin.findOne({email:email})
     if (!supervisor) {
       return res.send({
         success: false,
