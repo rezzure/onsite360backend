@@ -13,16 +13,9 @@ const addVendorManagement = require("../../controllers/Supervisor/addVendor");
 const getMaterialMaster = require("../../controllers/Supervisor/getMaterialMaster");
 const updateMaterialMaster = require("../../controllers/Supervisor/updateMaterialMaster");
 const deleteMaterialMaster = require("../../controllers/Supervisor/deleteMaterialMaster");
-<<<<<<< HEAD
 const getVendorDetail = require("../../controllers/Supervisor/getVendorDetail");
 const updateVendorDetail = require("../../controllers/Supervisor/updateVendorDetail");
 const deleteVendorDetail = require("../../controllers/Supervisor/deleteVendorDetail");
-=======
-const addPartnerManagement = require("../../controllers/Supervisor/addPartnerManagement");
-const getPartnerDetail = require("../../controllers/Supervisor/getPartnerDetail");
-const updatePartnerDetail = require("../../controllers/Supervisor/updatePartnerDetail");
-const deletePartnerDetail = require("../../controllers/Supervisor/deletePartnerDetail");
->>>>>>> 591d6a854a1a95664409505426c2aacb959bc681
  
 // get detail
 router.get("/supervisor/detail",verification,supervisorDetail)
@@ -57,7 +50,6 @@ router.delete("/delete/material/master/:_id", verification, deleteMaterialMaster
 // vendor management router
 router.post("/vendor/management", verification, addVendorManagement)
 
-<<<<<<< HEAD
 // get vendor data router
 router.get("/get/vendorDetail", verification, getVendorDetail)
 
@@ -66,24 +58,5 @@ router.put("/update/vendorDetail/:_id", verification, updateVendorDetail)
 
 // delete vendor detail router
 router.delete("/delete/vendorDetail/:_id", deleteVendorDetail)
-=======
-
-// partner Management router
-
-router.post("/add/partnerManagement",verification,upload.fields([
-    { name: 'partnerPhoto', maxCount: 1 },
-    { name: 'partnerIdProof', maxCount: 1 }
-  ]),addPartnerManagement)
-
-  // get partner Details router
-router.get("/get/partnerDetail", verification, getPartnerDetail)
-
-
-  // update partner Details router
-router.put("/edit/partnerDetail/:_id" ,verification,upload.fields([{ name: 'partnerPhoto', maxCount: 1 },{ name: 'partnerIdProof', maxCount: 1 }]),updatePartnerDetail)
-
-// delete partner detail rounter
-router.delete("/delete/partnerDetail/:_id", verification, deletePartnerDetail)
->>>>>>> 591d6a854a1a95664409505426c2aacb959bc681
 
 module.exports = router;

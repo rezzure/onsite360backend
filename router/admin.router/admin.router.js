@@ -28,17 +28,9 @@ const addVendorManagement = require("../../controllers/Admin/vendorManagement.js
 const getMaterialMaster = require("../../controllers/Admin/getMaterialMaster.js");
 const updateMaterialMaster = require("../../controllers/Admin/updateMaterialMaster.js");
 const deleteMaterialMaster = require("../../controllers/Admin/deleteMaterialMaster.js");
-<<<<<<< HEAD
 const getVendorDetail = require("../../controllers/Admin/getVendorDetail.js");
 const updateVendorDetail = require("../../controllers/Admin/updateVendorDetail.js");
 const deleteVendorDetail = require("../../controllers/Admin/deleteVendorDetail.js");
-=======
-const addPartnerManagement = require("../../controllers/Admin/addPartnerManagement.js");
-const upload = require("../../middleware/multer.js");
-const getPartnerDetail = require("../../controllers/Admin/getPartnerDetail.js");
-const updatePartnerDetail = require("../../controllers/Admin/updatePartnerDetail.js");
-const deletePartnerDetail = require("../../controllers/Admin/deletePartnerDetail.js");
->>>>>>> 591d6a854a1a95664409505426c2aacb959bc681
 
 
 
@@ -130,21 +122,5 @@ router.put("/update/vendorDetail/:_id", verification, updateVendorDetail)
 router.delete("/delete/vendorDetail/:_id", deleteVendorDetail)
 
 
-
-// partner Management router
-
-router.post("/add/partnerManagement",verification,upload.fields([{ name: 'partnerPhoto', maxCount: 1 },{ name: 'partnerIdProof', maxCount: 1 }]),addPartnerManagement)
-
-
-// get partner details router
-router.get("/get/partnerDetail", verification, getPartnerDetail)
-
-
-
-// edit partner details router
-router.put("/edit/partnerDetail/:_id" ,verification,upload.fields([{ name: 'partnerPhoto', maxCount: 1 },{ name: 'partnerIdProof', maxCount: 1 }]),updatePartnerDetail)
-
-// delete partner detail rounter
-router.delete("/delete/partnerDetail/:_id", verification, deletePartnerDetail)
 
 module.exports = router;
