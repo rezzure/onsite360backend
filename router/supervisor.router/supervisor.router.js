@@ -13,6 +13,10 @@ const addVendorManagement = require("../../controllers/Supervisor/addVendor");
 const getMaterialMaster = require("../../controllers/Supervisor/getMaterialMaster");
 const updateMaterialMaster = require("../../controllers/Supervisor/updateMaterialMaster");
 const deleteMaterialMaster = require("../../controllers/Supervisor/deleteMaterialMaster");
+const addPartnerManagement = require("../../controllers/Supervisor/addPartnerManagement");
+const getPartnerDetail = require("../../controllers/Supervisor/getPartnerDetail");
+const updatePartnerDetail = require("../../controllers/Supervisor/updatePartnerDetail");
+const deletePartnerDetail = require("../../controllers/Supervisor/deletePartnerDetail");
  
 // get detail
 router.get("/supervisor/detail",verification,supervisorDetail)
@@ -46,5 +50,23 @@ router.delete("/delete/material/master/:_id", verification, deleteMaterialMaster
 
 // vendor management router
 router.post("/vendor/management", verification, addVendorManagement)
+
+
+// partner Management router
+
+router.post("/add/partnerManagement",verification,upload.fields([
+    { name: 'partnerPhoto', maxCount: 1 },
+    { name: 'partnerIdProof', maxCount: 1 }
+  ]),addPartnerManagement)
+
+  // get partner Details router
+router.get("/get/partnerDetail", verification, getPartnerDetail)
+
+
+  // update partner Details router
+router.put("/edit/partnerDetail/:_id" ,verification,upload.fields([{ name: 'partnerPhoto', maxCount: 1 },{ name: 'partnerIdProof', maxCount: 1 }]),updatePartnerDetail)
+
+// delete partner detail rounter
+router.delete("/delete/partnerDetail/:_id", verification, deletePartnerDetail)
 
 module.exports = router;
